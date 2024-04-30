@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.port || 3000;
 app.set('view engine', "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 const client = require('mongodb').MongoClient;
 const Objid = require('mongodb').ObjectId;
 let alldata;
@@ -17,7 +18,7 @@ client.connect(url)
         console.log(error);
     })
 app.get('/', (req, res) => {
-    res.send("MongoDb Homepage")
+    res.json({message:"Mongodb connected..."});
 })
 
 //*Get fetch data :
